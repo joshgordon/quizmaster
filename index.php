@@ -12,36 +12,35 @@ $name = $info["name"];
 $taken = $info["taken"]; 
 $pass = $info["pass"];
 
-if($taken == 0) { 
+//Read in and parse the config from the config.json file.
+$config = file_get_contents("./config.json");
+$json = json_decode($config, true);
 
-  //Read in and parse the config from the config.json file.
-  $config = file_get_contents("./config.json");
-  $json = json_decode($config, true);
+?>
 
-  ?>
-
-  <html>
-    <head>
-      <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-      <script>
-      var id="<?php echo $_GET["id"];?>";
-      $(function() {
-        $("#quiz-form").on("submit", function() { 
-          var answers = [];
-          $('input:radio:checked').each(function(){ answers.push(this.id) })
-          $.post("answer.php?id=" + id , JSON.stringify({id: id, answers: answers}), function(data) { 
-            console.log(data);
-          });
-          return false; 
+<html>
+  <head>
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script>
+    var id="<?php echo $_GET["id"];?>";
+    $(function() {
+      $("#quiz-form").on("submit", function() { 
+        var answers = [];
+        $('input:radio:checked').each(function(){ answers.push(this.id) })
+        $.post("answer.php?id=" + id , JSON.stringify({id: id, answers: answers}), function(data) { 
+          console.log(data);
         });
+        return false; 
       });
-      
-      </script>
-      <title><?php echo $json["title"];?></title>
-    </head>
-    <body>
+    });
+    
+    </script>
+    <title><?php echo $json["title"];?></title>
+  </head>
+  <body>
+    <?php if ($taken == 0) { ?>
       <h1><?php echo $json["title"];?></h1>
       <form id="quiz-form" action="none">
         <?php foreach ($json["questions"] as $question) { 
@@ -55,14 +54,15 @@ if($taken == 0) {
         ?>
         <input type="submit">
       </form>
-    </body>
-  </html> 
-<?php } else { ?>
+    <?php } else { ?>
+      <h1>Quiz already taken. You 
+      <?php if ($pass == 0) { 
+        echo "did not pass.";
+      } else { 
+        echo "passed";
+      }?></h1>
+    <?php } ?>
+  </body>
+</html> 
 
-<h1>Quiz already taken. You 
-<?php if ($pass == 0) { 
-  echo "did not";
-} else { 
-  echo "did";
-}?> pass</h1>
-<?php } ?>
+

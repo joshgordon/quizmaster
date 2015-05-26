@@ -27,7 +27,7 @@ foreach ($post_data["answers"] as $answer) {
 if ($num_questions_right / $num_questions > $config["pass_threshold"]) {
   $results["pass"] = true;
 }
-$pass = -1
+$pass = -1;
 //Update the database. 
 if ($results["pass"]) { 
   $pass = 1;
