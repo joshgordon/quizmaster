@@ -1,0 +1,65 @@
+{
+  "title": "Example Quiz",
+  "questions":
+  [
+    {
+      "serial": "70d6596a-e052-4692-8feb-a20287dd69c0",
+      "question": "9 x 7",
+      "answers":
+      [
+        "42",
+        "47",
+        "63",
+        "15"
+      ],
+      "correct": 2
+    },
+    {
+      "serial": "de031c6e-e263-41c6-bb06-edd5ef42f88d",
+      "question": "Answer is B",
+      "answers":
+      [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "correct": 1
+    },
+    {
+      "serial": "66d8d956-0f84-4b22-a135-2f703d7bbd3f", 
+      "question": "What is your favorite color", 
+      "answers": 
+      [
+        "Red",
+        "Green",
+        "Blue",
+        "Some mix of the above"
+      ],
+      "correct": 3
+    }, 
+    { 
+      "serial": "47ecf5e7-0f3a-4807-a9c8-fafe26377f0b",
+      "question": "What is the airspeed velocity of an unlaiden swallow?",
+      "answers": 
+      [
+        "23 km/s",
+        "15 kph",
+        "African or European",
+        "I... I don't know!"
+      ],
+      "correct": 2
+    },
+    {
+      "serial": "adf8dce4-fabb-4a7f-bac3-7241514e0481",
+      "question": "What is your name?",
+      "answers": 
+      [
+        "Josh",
+        "Not Josh"
+      ],
+      "correct": 0
+    }
+  ],
+  "pass_threshold": 0.75
+}
