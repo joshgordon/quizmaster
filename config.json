@@ -61,5 +61,9 @@
       "correct": 0
     }
   ],
-  "pass_threshold": 0.75
+  "pass_threshold": 0.75,
+  "pass_title": "You passed!",
+  "pass_message": "Congratulations, you passed.",
+  "fail_title": "You failed :(",
+  "fail_message": "Sorry, you failed."
 }
