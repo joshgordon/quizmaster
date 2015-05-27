@@ -12,9 +12,10 @@ if (isset($_GET["id"]) && $info) {
   $name = $info["name"]; 
   $taken = $info["taken"]; 
   $pass = $info["pass"];
+  $configfile = $info["config"];
 
   //Read in and parse the config from the config.json file.
-  $config = file_get_contents("./config.json");
+  $config = file_get_contents($configfile);
   $json = json_decode($config, true);
 
   ?>
@@ -50,17 +51,36 @@ if (isset($_GET["id"]) && $info) {
       });
       
       </script>
+      <style>
+        ul.answers { 
+          list-style-type: none; 
+          margin-left: -15px;
+        }
+        input[type=radio] { 
+          margin-right: 4px;
+        }
+        .questions { 
+          font-weight: bold; 
+          font-size: 14pt; 
+        }
+        label { 
+          font-weight: 400; 
+        }
+      </style>
       <title><?php echo $json["title"];?></title>
     </head>
     <body>
       <div class="container">
         <?php if ($taken == 0) { ?>
           <h1><?php echo $json["title"];?></h1>
+          <?php echo "Welcome, $name!"; ?>
           <div class="animated" id="quiz">
             <form id="quiz-form" action="none">
               <?php foreach ($json["questions"] as $question) { 
+                echo '<div class="questions">'; 
                 echo $question["question"]; 
-                echo "<ul>";
+                echo '</div>';
+                echo '<ul class="answers">';
                 foreach ($question["answers"] as $answer_num => $answer) {
                   echo '<li><input type="radio" id="'.$question["serial"].'_'.$answer_num.'" name="'.$question["serial"].'" value='.$answer_num.'><label for="'.$question["serial"].'_'.$answer_num.'">'.$answer."</label></li>";
                 }
